@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <div class= "content">
+
+        <div class="bg-white py-8 sm:py-8">
+            <div class="mx-auto max-w-7xl  lg:px-8">
+              <div class="mx-auto max-w-2xl lg:mx-0">
+                <h2 class="text-3xl font-bold tracking-tight text-purple-500 sm:text-4xl">Quorum </h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">Legislative Public Data</p>
+              </div>
+
+              <div class="mx-auto mt-10 grid max-w-2xl grid-cols  border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+                <article class="flex max-w-xl flex-col ">
+                  <div class="flex items-center gap-x-4 text-xs">
+                    <p class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Bills</p>
+                  </div>
+                  <div class="group relative">
+
+                       <div class="flex items-center justify-center">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white shadow-md rounded-xl">
+                            <thead>
+                                <tr class="bg-blue-gray-100 text-gray-700 ">
+                                <th class="py-3 px-4 text-left">Bill id</th>
+                                <th class="py-3 px-4 text-left">Title</th>
+                                <th class="py-3 px-4 text-left">Sponsor</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-blue-gray-900">
+                                {% for bill in bills%}
+                                <tr class="border-b border-blue-gray-200 hover:bg-purple-200 roundex-xl cursor-pointer">
+                                  <td class="py-3 px-4"><a href="{% url 'bills' bill.id %}"> {{bill.id}} </a></td>
+                                  <td class="py-3 px-4"><a href="{% url 'bills' bill.id %}"> {{bill.title}} </a></td>
+                                  <td class="py-3 px-4"><a href="{% url 'bills' bill.id %}"> {{bill.primary_sponsor__name}} </a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            </table>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="flex max-w-xl flex-col items-start ">
+                    <div class="flex items-center gap-x-4 text-xs">
+                      <p class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Legislators</p>
+                    </div>
+                    <div class="group relative">
+  
+                         <div class="flex items-center justify-center">
+                          <div class="overflow-x-auto">
+                              <table class="min-w-full bg-white shadow-md rounded-xl">
+                              <thead>
+                                  <tr class="bg-blue-gray-100 text-gray-700">
+                                  <th class="py-3 px-4 text-left">Legislator id</th>
+                                  <th class="py-3 px-4 text-left">Name</th>
+                                  </tr>
+                              </thead>
+                              <tbody class="text-blue-gray-900">
+                                {% for legislator in legislators%}
+                                  <tr class="border-b border-blue-gray-200 hover:bg-purple-200 roundex-xl cursor-pointer">
+                                    <td class="py-3 px-4"><a href="{% url 'legislator_detail' legislator.id %}"> {{legislator.id}} </a></td>
+                                    <td class="py-3 px-4"><a href="{% url 'legislator_detail' legislator.id %}">{{legislator.name}}</td>
+                                  </tr>
+                                  {% endfor %}
+                              </tbody>
+                              </table>
+                      </div>
+                    </div>
+                  </article>
+          
+              </div>
+            </div>
+          </div>
+    </div>
+
+</div>
+    
+</body>
+</html>
